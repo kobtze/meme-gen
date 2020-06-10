@@ -1,19 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="css/style.css">
     <title>Meme Generator</title>
 </head>
+
 <body onload="onInit()">
     <h1>Meme Generator</h1>
     <!-- <img id="meme-image" src="img/2.jpg"> -->
-    <canvas id="meme-canvas" style="display: block; border: 1px solid black;"></canvas>
+    <div class="canvas-container">
+        <canvas id="meme-canvas" style="display: block; border: 1px solid black;"></canvas>
+    </div>
     <input id="meme-text" type="text">
 
     <script src="js/service_storage.js"></script>
     <script src="js/service_meme-gen.js"></script>
     <script src="js/controller-meme-gen.js"></script>
 </body>
+
 </html>

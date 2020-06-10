@@ -1,4 +1,10 @@
+
+.canvas-container {
+    width: 500px;
+    height: 500px;
+}
+
 canvas {
-    width: 350px;
-    height: 350px;
+    height: auto;
+    object-fit: cover;
 }
