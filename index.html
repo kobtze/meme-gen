@@ -10,11 +10,20 @@
 
 <body onload="onInit()">
     <h1>Meme Generator</h1>
-    <!-- <img id="meme-image" src="img/2.jpg"> -->
+    
+    <section class="image-gallery">
+        <div class="img-1">
+            <img src="img/1.jpg" onclick="onClickGallery(this)" value="1">
+        </div>
+        <div class="img-2">
+            <img src="img/2.jpg" onclick="onClickGallery(this)" value="2">
+        </div>
+    </section>
+
     <div class="canvas-container">
         <canvas id="meme-canvas" style="display: block; border: 1px solid black;"></canvas>
     </div>
-    <input id="meme-text" type="text">
+    <input type="text" id="meme-text" class="text-input" oninput="onTxtEdit(this)">
 
     <script src="js/service_storage.js"></script>
     <script src="js/service_meme-gen.js"></script>

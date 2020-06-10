@@ -21,7 +21,7 @@ var gMeme = {
     selectedLineIdx: 0,
     lines: [
         {
-            txt: 'One shall never eat Falafel',
+            txt: 'i love puppies',
             size: 20,
             align: 'center',
             color: 'white'
@@ -49,12 +49,12 @@ function resizeCanvas() {
 function drawMemeText() {
     var meme = gMeme;
     var memeText = meme.lines[meme.selectedLineIdx].txt
-    drawText(memeText, 250, 480)
+    drawText(memeText, 150, 280)
 }
 
 function drawText(text, x, y) {
     gCtx.lineWidth = '2';
-    gCtx.font = '40px impact';
+    gCtx.font = '28px impact';
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = 'white';
     gCtx.textAlign = 'center';
@@ -74,3 +74,15 @@ function drawMemeImg() {
     }
 }
  
+function changeText(newText) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = newText
+    return gMeme
+}
+
+function getText() {
+    return gMeme.lines[gMeme.selectedLineIdx].txt;
+}
+
+function changeImg(newImgId) {
+    gMeme.selectedImgId = newImgId;
+}
