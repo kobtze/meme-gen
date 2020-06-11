@@ -32,14 +32,17 @@ function renderMemeImg() {
 }
 
 function drawMemeText() {
-    var memeText = getText()
-    var pos = getPos();
-    drawText(memeText, pos.x, pos.y)
+    var meme = getMeme();
+    meme.lines.forEach(function(value, idx) {
+        var memeText = value.txt;
+        var pos = getPos(idx);
+        drawText(memeText, idx, pos.x, pos.y)
+    })
 }
 
-function drawText(text, x, y) {
+function drawText(text, idx, x, y) {
     gCtx.lineWidth = '2';
-    gCtx.font = getMeme().lines[0].font;
+    gCtx.font = getMeme().lines[idx].font;
     gCtx.strokeStyle = 'black';
     gCtx.fillStyle = 'white';
     gCtx.textAlign = 'center';
@@ -48,7 +51,8 @@ function drawText(text, x, y) {
 }
 
 function renderMemeTextInput() {
-    var memeText = getText();
+    var idx = getMeme().selectedLineIdx;
+    var memeText = getText(idx);
     var elTextInput = document.getElementById('meme-text')
     elTextInput.value = memeText;
 }
@@ -86,4 +90,10 @@ function onUpClick() {
 function onDownClick() {
     moveTextDown();
     renderMemeImg();
+}
+
+function onSwitchLines() {
+    nextLine();
+    renderMemeImg();
+    renderMemeTextInput()
 }

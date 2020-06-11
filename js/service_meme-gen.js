@@ -24,6 +24,14 @@ var gMeme = {
             align: 'center',
             color: 'white',
             pos: { x: 150, y: 40 }
+        },
+        {
+            txt: 'help me!',
+            size: 20,
+            font: '28px impact',
+            align: 'center',
+            color: 'white',
+            pos: { x: 150, y: 280 }
         }
     ]
 }
@@ -39,12 +47,16 @@ function getImageById(id) {
     return gImgs[idx]
 }
 
-function getText() {
-    return gMeme.lines[gMeme.selectedLineIdx].txt;
+function getText(lineIdx) {
+    return gMeme.lines[lineIdx].txt;
 }
 
-function getPos() {
-    return gMeme.lines[gMeme.selectedLineIdx].pos;
+function getPos(lineIdx) {
+    return gMeme.lines[lineIdx].pos;
+}
+
+function getSelectedLineIdx() {
+    return gMeme.selectedLineIdx;
 }
 
 // CHANGE functions:
@@ -58,12 +70,13 @@ function changeImg(newImgId) {
 }
 
 function increaseText() {
-    gMeme.lines[0].font = gCtx.font = gCtx.font.replace(/\d+px/, (parseInt(gCtx.font.match(/\d+px/)) + 2) + "px");
+    var idx = getSelectedLineIdx();
+    gMeme.lines[idx].font = gMeme.lines[idx].font.replace(/\d+px/, (parseInt(gMeme.lines[idx].font.match(/\d+px/)) + 2) + "px");
 }
 
 function decreaseText() {
-    gMeme.lines[0].font = gCtx.font = gCtx.font.replace(/\d+px/, (parseInt(gCtx.font.match(/\d+px/)) - 2) + "px");
-}
+    var idx = getSelectedLineIdx();
+    gMeme.lines[idx].font = gMeme.lines[idx].font.replace(/\d+px/, (parseInt(gMeme.lines[idx].font.match(/\d+px/)) - 2) + "px");}
 
 function moveTextUp() {
     gMeme.lines[gMeme.selectedLineIdx].pos.y -= 5;
@@ -71,4 +84,8 @@ function moveTextUp() {
 
 function moveTextDown() {
     gMeme.lines[gMeme.selectedLineIdx].pos.y += 5;
+}
+
+function nextLine() {
+    gMeme.selectedLineIdx = (gMeme.selectedLineIdx === gMeme.lines.length - 1) ? 0 : gMeme.selectedLineIdx + 1;
 }
