@@ -1,9 +1,6 @@
 'use strict';
 console.log('memegen-service')
 
-const gElCanvas = document.getElementById('meme-canvas');
-var gCtx;
-
 var gKeywords = {
     'happy': 12,
     'funny': 4,
@@ -23,11 +20,15 @@ var gMeme = {
         {
             txt: 'i love puppies',
             size: 20,
+            font: '28px impact',
             align: 'center',
-            color: 'white'
+            color: 'white',
+            pos: { x: 150, y: 40 }
         }
     ]
 }
+
+// GET functions:
 
 function getMeme() {
     return gMeme
@@ -38,51 +39,36 @@ function getImageById(id) {
     return gImgs[idx]
 }
 
-function resizeCanvas() {
-    var elContainer = document.querySelector('.canvas-container');
-    // Note: changing the canvas dimension this way clears the canvas
-    
-    gElCanvas.width = elContainer.offsetWidth;
-    gElCanvas.height = elContainer.offsetHeight;
-}
-
-function drawMemeText() {
-    var meme = gMeme;
-    var memeText = meme.lines[meme.selectedLineIdx].txt
-    drawText(memeText, 150, 280)
-}
-
-function drawText(text, x, y) {
-    gCtx.lineWidth = '2';
-    gCtx.font = '28px impact';
-    gCtx.strokeStyle = 'black';
-    gCtx.fillStyle = 'white';
-    gCtx.textAlign = 'center';
-    gCtx.fillText(text, x, y);
-    gCtx.strokeText(text, x, y);
-}
-
-function drawMemeImg() {
-    gCtx = gElCanvas.getContext('2d');
-    var meme = gMeme;
-    var id = meme.selectedImgId;
-    var elImg = new Image();
-    elImg.src = getImageById(id).url;
-    elImg.onload = () => {
-        gCtx.drawImage(elImg, 0, 0, gElCanvas.width, gElCanvas.height)
-        drawMemeText();
-    }
-}
- 
-function changeText(newText) {
-    gMeme.lines[gMeme.selectedLineIdx].txt = newText
-    return gMeme
-}
-
 function getText() {
     return gMeme.lines[gMeme.selectedLineIdx].txt;
 }
 
+function getPos() {
+    return gMeme.lines[gMeme.selectedLineIdx].pos;
+}
+
+// CHANGE functions:
+
+function changeText(newText) {
+    gMeme.lines[gMeme.selectedLineIdx].txt = newText
+}
+
 function changeImg(newImgId) {
     gMeme.selectedImgId = newImgId;
+}
+
+function increaseText() {
+    gMeme.lines[0].font = gCtx.font = gCtx.font.replace(/\d+px/, (parseInt(gCtx.font.match(/\d+px/)) + 2) + "px");
+}
+
+function decreaseText() {
+    gMeme.lines[0].font = gCtx.font = gCtx.font.replace(/\d+px/, (parseInt(gCtx.font.match(/\d+px/)) - 2) + "px");
+}
+
+function moveTextUp() {
+    gMeme.lines[gMeme.selectedLineIdx].pos.y -= 5;
+}
+
+function moveTextDown() {
+    gMeme.lines[gMeme.selectedLineIdx].pos.y += 5;
 }
