@@ -9,27 +9,101 @@
 </head>
 
 <body onload="onInit()">
-    <h1>Meme Generator</h1>
-    
-    <section class="image-gallery">
-        <div class="img-1">
-            <img src="img/1.jpg" id="img-1" onclick="onClickGallery(this)" value="1">
-        </div>
-        <div class="img-2">
-            <img src="img/2.jpg" id="img-2" onclick="onClickGallery(this)" value="2">
-        </div>
-    </section>
+    <header class="orange-background white-text">
 
-    <div class="canvas-container">
-        <canvas id="meme-canvas" style="display: block; border: 1px solid black;"></canvas>
-    </div>
-    <input type="text" id="meme-text" class="text-input" oninput="onTxtEdit(this)">
-    <br>
-    <button onclick="onIncrease()">+</button>
-    <button onclick="onDecrease()">-</button>
-    <button onclick="onUpClick()">&#x2B06</button>
-    <button onclick="onDownClick()">&#x2B07</button>
-    <button onclick="onSwitchLines()">&#x21C6</button>
+        <h1>Meme Generator</h1>
+        <a href="index.html"><img src="img/logo.png" alt="memegen" class="logo"></a>
+        <nav>
+            <a name="top"></a>
+            <div id="button-gallery" onclick="onGalleryClick(this)">Gallery</div>
+            <div>Memes</div>
+            <div>About</div>
+        </nav>
+        
+    </header>
+
+    <main>
+
+        <section class="meme-editor" style="display: none">
+            <div class="canvas-container">
+                <canvas id="meme-canvas"></canvas>
+            </div>
+            <div class="meme-controls">
+                <input type="text" id="meme-text" class="text-input" oninput="onTxtEdit(this)">
+                <button class="fa button" onclick="onIncrease()"><img class="svg" src="svg/plus.svg"></button>
+                <button class="fa button" onclick="onDecrease()"><img class="svg" src="svg/minus.svg"></button>
+                <button class="fa button" onclick="onUpClick()"><img class="svg" src="svg/arrow-up.svg"></button>
+                <button class="fa button" onclick="onDownClick()"><img class="svg" src="svg/arrow-down.svg"></button>
+                <button class="fa button" onclick="onSwitchLines()"><img class="svg" src="svg/exchange-alt.svg"></button>
+            </div>
+        </section>
+
+        <section class="image-gallery">
+            <div class="img-1">
+                <img src="img/1.jpg" id="img-1" onclick="onGalImgClick(this)" value="1">
+            </div>
+            <div class="img-2">
+                <img src="img/2.jpg" id="img-2" onclick="onGalImgClick(this)" value="2">
+            </div>
+            <div class="img-3">
+                <img src="img/3.jpg" id="img-3" onclick="onGalImgClick(this)" value="3">
+            </div>
+            <div class="img-4">
+                <img src="img/4.jpg" id="img-4" onclick="onGalImgClick(this)" value="4">
+            </div>
+            <div class="img-5">
+                <img src="img/5.jpg" id="img-5" onclick="onGalImgClick(this)" value="5">
+            </div>
+            <div class="img-6">
+                <img src="img/6.jpg" id="img-6" onclick="onGalImgClick(this)" value="6">
+            </div>
+            <div class="img-7">
+                <img src="img/7.jpg" id="img-7" onclick="onGalImgClick(this)" value="7">
+            </div>
+            <div class="img-8">
+                <img src="img/8.jpg" id="img-8" onclick="onGalImgClick(this)" value="8">
+            </div>
+            <div class="img-9">
+                <img src="img/9.jpg" id="img-9" onclick="onGalImgClick(this)" value="9">
+            </div>
+            <div class="img-10">
+                <img src="img/10.jpg" id="img-10" onclick="onGalImgClick(this)" value="10">
+            </div>
+            <div class="img-11">
+                <img src="img/11.jpg" id="img-11" onclick="onGalImgClick(this)" value="11">
+            </div>
+            <div class="img-12">
+                <img src="img/12.jpg" id="img-12" onclick="onGalImgClick(this)" value="12">
+            </div>
+            <div class="img-13">
+                <img src="img/13.jpg" id="img-13" onclick="onGalImgClick(this)" value="13">
+            </div>
+            <div class="img-14">
+                <img src="img/14.jpg" id="img-14" onclick="onGalImgClick(this)" value="14">
+            </div>
+            <div class="img-15">
+                <img src="img/15.jpg" id="img-15" onclick="onGalImgClick(this)" value="15">
+            </div>
+            <div class="img-16">
+                <img src="img/16.jpg" id="img-16" onclick="onGalImgClick(this)" value="16">
+            </div>
+            <div class="img-17">
+                <img src="img/17.jpg" id="img-17" onclick="onGalImgClick(this)" value="17">
+            </div>
+            <div class="img-18">
+                <img src="img/18.jpg" id="img-18" onclick="onGalImgClick(this)" value="18">
+            </div>
+
+        </section>
+
+    </main>
+    <footer class="orange-background white-text center">
+        <div>
+            <img src="img/logo.png" alt="memegen" class="logo">
+        </div>
+
+        <p>Developed by Kobi 'Kobtze' Donner 2020</p>
+    </footer>
 
     <script src="js/service_storage.js"></script>
     <script src="js/service_meme-gen.js"></script>
