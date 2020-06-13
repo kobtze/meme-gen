@@ -34,20 +34,22 @@ function renderMemeImg() {
 function drawMemeText() {
     var meme = getMeme();
     meme.lines.forEach(function(value, idx) {
-        var memeText = value.txt;
+        var memeText = value.txt.toUpperCase();
         var pos = getPos(idx);
         drawText(memeText, idx, pos.x, pos.y)
     })
 }
 
 function drawText(text, idx, x, y) {
-    gCtx.lineWidth = '2';
+    gCtx.lineWidth = '1';
     gCtx.font = getMeme().lines[idx].font;
     gCtx.strokeStyle = 'black';
+    gCtx.shadowColor = 'black';
+    gCtx.shadowBlur = 5;
     gCtx.fillStyle = 'white';
     gCtx.textAlign = 'center';
-    gCtx.fillText(text, x, y);
     gCtx.strokeText(text, x, y);
+    gCtx.fillText(text, x, y);
 }
 
 function renderMemeTextInput() {
@@ -66,10 +68,22 @@ function onTxtEdit(el) {
     renderMemeTextInput()
 }
 
-function onClickGallery(el) {
+function onGalImgClick(el) {
+    // debugger;
     var newImgId = el.getAttribute('value');
     changeImg(newImgId);
-    renderMemeImg();
+    document.getElementById('button-gallery').classList.remove('active');
+    // document.querySelector('.image-gallery').style.display='none';
+    document.querySelector('.meme-editor').removeAttribute('style');
+    document.location = '#top';
+    onInit();
+    // setTimeout(function(){ renderMemeImg(); }, 300);
+}
+
+function onGalleryClick(el) {
+    document.getElementById('button-gallery').classList.add('active');
+    document.querySelector('.image-gallery').removeAttribute('style');
+    document.querySelector('.meme-editor').style.display='none';
 }
 
 function onIncrease() {
